@@ -1,0 +1,66 @@
+<!--DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Proof Of Certification</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha256-ZT4HPpdCOt2lvDkXokHuhJfdOKSPFLzeAJik5U/Q+l4=" crossorigin="anonymous" />
+  <link rel="stylesheet" type="text/css" href="css/main.css">
+</head-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Proof Of Certification</title>
+
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+
+    <!--script src="js/web3.min.js"></script>
+    <script src="js/require.js"></script-->
+
+</head>
+<body>
+
+   <div class="container">
+
+        <h1>
+      Proof Of Certificate
+    </h1>
+    <h5>
+      Blockchain Anti-Falsification Solution for Academic Diplomas and Certificates
+
+    </h5>
+    <img id="loader" src="https://loading.io/spinners/double-ring/lg.double-ring-spinner.gif">
+        <span id="countIns"></span>
+
+        <h2 id="Statement"> </h2>
+        <span id="Instant"></span>
+        <h2 id="total"></h2>
+        <hr>
+        <div class="row">
+          <div class="column">
+            <label for="certificateType" class="col-lg-2 control-label">Certificate Type</label>
+            <input id="certificateType" type="text">
+
+            <label for="_certifier" class="col-lg-2 control-label">Certificate Issuer</label>
+            <input id="_certifier" type="text">
+
+            <label for="recipient" class="col-lg-2 control-label">Receiving Person</label>
+            <input id="recipient" type="text">
+        </div>
+        <div class="column">
+          <button type="button" class="btn btn-lg btn-warning" onclick="Dapp.issueCert()">Issue Certificate</button>
+          <button type="button" class="btn btn-lg btn-warning" onclick="Dapp.revokeCert()">Revoke Certificate</button>
+          <button type="button" class="btn btn-lg btn-warning" onclick="Dapp.verifyCert()">Verify Certificate</button>
+        </div>
+    </div>
+
+    </div>
+
+  <script src="./bundle.js"></script>
+</body>
+</html>
