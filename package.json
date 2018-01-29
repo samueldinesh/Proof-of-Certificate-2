@@ -2,7 +2,7 @@
   "name": "proof-of-certificates",
   "version": "0.0.1",
   "description": "Decentralised application made to incentivise doers in a democratic autonomous organisation.",
-  "repository": "https://github.com/dickolsson/irondoers",
+  "repository": "https://github.com/samueldinesh/Proof-of-Certificate-2.git",
   "scripts": {
     "build": "webpack",
     "dev": "webpack-dev-server"

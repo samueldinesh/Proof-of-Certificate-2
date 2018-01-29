@@ -3,7 +3,7 @@ var contract = require("truffle-contract");
 var Cert = contract(require("../build/contracts/Certificate.json"));
 //var IronPromise = contract(require("../build/contracts/IronPromise.json"));
 require("bootstrap");
-
+//use incase of bytes32 is used instead of string. web3.toAscii()***********************
 var account;
 
 window.Dapp = {

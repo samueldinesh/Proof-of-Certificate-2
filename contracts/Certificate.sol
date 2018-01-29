@@ -31,7 +31,7 @@ contract Certificate{
     event DocumentIssued(
         string recipient, 
         string certificate, 
-        string certifier
+        string documentId
     );
     
      /**
@@ -47,7 +47,7 @@ contract Certificate{
         certificate.blockNumber = block.number;
 
         numCertificateIssued +=1;
-        DocumentIssued(recipient, certificateType, _certifier);
+        DocumentIssued(recipient, certificateType, documentId);
 
         //return true;
     }
@@ -57,7 +57,7 @@ contract Certificate{
     /**
      * @dev Revokes existing document and sets the recipient to 0x0.
      */
-    function revokeDocument(string documentId, string recipient)view public returns (string,string,string,uint256) {
+    function revokeDocument(string documentId, string recipient)constant returns (string,string,string,uint256) {
         require(keccak256(documents[documentId].recipientName) == keccak256(recipient));//keccak256 gas cost is low than string comparision
         //documents[document].recipient = address(0);
 
@@ -66,7 +66,7 @@ contract Certificate{
         return(documents[documentId].issuerName,documents[documentId].recipientName,documents[documentId].certificate,documents[documentId].blockNumber) ;
     }
 
-    function verifyDocument(string documentId, string recipient,string certificateType)view public returns(bool){
+    function verifyDocument(string documentId, string recipient,string certificateType)constant returns(bool){
         if(keccak256(documents[documentId].recipientName) == keccak256(recipient) &&
         keccak256(documents[documentId].certificate) == keccak256(certificateType)){
             return true;
