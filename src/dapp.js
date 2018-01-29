@@ -26,6 +26,7 @@ window.Dapp = {
   },
 
   certificateCount: function() {//Doc Count
+    console.log("certificateCounted...");
     Cert.deployed().then(function(instance) {
       return instance.totalDocument();
     }).then(function(value) {
@@ -41,7 +42,7 @@ window.Dapp = {
       var DocumentIssuedEvent = instance.DocumentIssued({fromBlock: 0, toBlock: 'latest',address:account})
       DocumentIssuedEvent.watch(function(err,result){
         if(!err){
-          console.log('event trigger',result.args.amount.valueOf())
+          console.log('event trigger',result.args.valueOf())
         }else{
           console.log('event not triggered')
         }
@@ -52,32 +53,33 @@ window.Dapp = {
 
   issueCert: function() {//issue doc
     var self = this;
+    var documentId = document.getElementById("documentId").value;
     var certificateType = document.getElementById("certificateType").value;
     var recipient = document.getElementById("recipient").value;
     var certifier = document.getElementById("_certifier").value;
     Cert.deployed().then(function(instance) {
       self.setAlert("issusing certificate...");
-      return instance.issueDocument(recipient,certificateType,certifier,{from: account});
+      return instance.issueDocument(documentId,recipient,certificateType,certifier,{from: account});
     }).then(function() {
       //self.setDoerCount();
       self.setAlert("certificate was added!", "success");
     }).catch(function(err) {
       console.log(err);
     });
+    this.certificateCount();
 
   },
   revokeCert: function() { //revoke doc
     var self = this;
+    var documentId = document.getElementById("documentId").value;
     var recipient = document.getElementById("recipient").value;
     Cert.deployed().then(function(instance) {
       self.setAlert("revoke certificate...");
-      return instance.revokeDocument(account,recipient,{from: account});
+      return instance.revokeDocument(documentId,recipient,{from: account});
     }).then(function(value) {
       console.log(value);
-      console.log(value[0]);
-      console.log(value[1]);
       var element = document.getElementById("Statement");
-      element.innerHTML = "The person "+value.valueOf()[1]+ " certified as "+ value.valueOf()[2] + "issued by "+value.valueOf()[0];
+      element.innerHTML = "The person "+value.valueOf()[1]+ " certified as "+ value.valueOf()[2] + " issued by "+value.valueOf()[0];
       //self.setDoerCount();
       self.setAlert("certificate was revoked!", "success");
     }).catch(function(err) {
@@ -86,11 +88,12 @@ window.Dapp = {
   },
   verifyCert: function() { //verify doc
     var self = this;
+    var documentId = document.getElementById("documentId").value;
     var certificateType = document.getElementById("certificateType").value;
     var recipient = document.getElementById("recipient").value;
     Cert.deployed().then(function(instance) {
       self.setAlert("verifing certificate...");
-      return instance.verifyDocument(account,recipient,certificateType);
+      return instance.verifyDocument(documentId,recipient,certificateType);
     }).then(function(value) {
 
       var element = document.getElementById("Instant");
